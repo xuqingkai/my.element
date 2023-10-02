@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>element</title>
+    <script src="//unpkg.com/vue@2/dist/vue.js"></script>
+    <!-- 引入样式 -->
+    <link href="//unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet">
+    <!-- 引入组件库 -->
+    <script src="//unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+<div id="app">
+    <el-container style="border: 1px solid #eee">
+        <el-form :inline="true" :model="formInline" class="demo-form-inline">
+            <el-form-item label="审批人">
+              <el-input v-model="formInline.user" placeholder="审批人"></el-input>
+            </el-form-item>
+            <el-form-item label="活动区域">
+              <el-select v-model="formInline.region" placeholder="活动区域">
+                <el-option label="区域一" value="shanghai"></el-option>
+                <el-option label="区域二" value="beijing"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="onSubmit">查询</el-button>
+            </el-form-item>
+        </el-form>
+    </el-container>
+    <el-container style="margin-top:50px; border: 1px solid #eee">
+        <table>
+            <tr>
+                <td>症状</td>
+                <td>
+                    <el-radio-group v-model="formInline.youwu">
+                        <el-radio label="1.无">1.无</el-radio>
+                        <el-radio label="2.有">2.有</el-radio>
+                    </el-radio-group>       
+                    （工种
+                    <el-input v-model="formInline.gongzhong" size="small" style="width: 50px"></el-input>
+                    从业时间
+                    <el-input v-model="formInline.shijian" size="small" style="width: 50px"></el-input>
+                    年）
+                </td>
+            </tr>
+        </table>
+    </el-container>
+</div>
+<style>
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #EBEEF5;
+  }
+  table th,table td{
+    border: 1px solid #EBEEF5;
+    padding: 5px;
+  }
+  table table{
+    margin: -5px;
+    border: none;
+  }
+  .el-radio,.el-checkbox{
+    margin-right: 10px;
+  }
+  .el-radio__label{
+    padding-left: 0;
+  }
+  .el-input input{
+    padding: 0 3px;
+    text-align: center;
+  }
+</style>
+<script>
+    new Vue({
+        el: '#app',
+        data: function() {
+        return {
+            formInline: {
+                user: 'admin',
+                region: '北京市',
+                youwu: '2.有',
+                gongzhong: '铸造工',
+                shijian: '11'
+            } 
+        }
+        },
+        methods: {
+            onSubmit() {
+                console.log('submit!');
+            }
+        }
+    });
+  </script>
+</body>
+</html>
